@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgo1jqbywqtbl"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_nffms"]
+
+[node name="first_Scene" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+position = Vector2(575, 328)
+scale = Vector2(1147.5, 125.5)
+mesh = SubResource("QuadMesh_nffms")
