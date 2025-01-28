@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7pmdqhlultvm"]
+[gd_scene load_steps=6 format=3 uid="uid://c7pmdqhlultvm"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_y4ysk"]
 [ext_resource type="Texture2D" uid="uid://k4ti2kpqfug1" path="res://assets/play_button.png" id="2_pt6nh"]
+[ext_resource type="Texture2D" uid="uid://di71mw8pbdq3v" path="res://assets/exit.png" id="3_v8jg4"]
+[ext_resource type="AudioStream" uid="uid://nlox7tkrkyut" path="res://assets/music/Main_Menu.mp3" id="4_siqqr"]
+
+[sub_resource type="GDScript" id="GDScript_h452h"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -38,8 +54,14 @@ text = "Settings"
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
-text = "Quit"
+icon = ExtResource("3_v8jg4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_siqqr")
+volume_db = -20.0
+script = SubResource("GDScript_h452h")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

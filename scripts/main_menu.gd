@@ -1,9 +1,10 @@
 extends Control
 
-
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$VBoxContainer/PlayButton.grab_focus() #allows keyboard only control to be initialised
+	audio_player.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,3 +22,7 @@ func _on_quit_button_pressed() -> void:
 #Opens settings
 func _on_settings_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")
+
+
+func _on_audio_stream_player_finished() -> void:
+	audio_player.play()
