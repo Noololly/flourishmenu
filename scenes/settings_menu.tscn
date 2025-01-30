@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq5287l3xleih"]
+[gd_scene load_steps=5 format=3 uid="uid://bq5287l3xleih"]
 
-[ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_7hdo7"]
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_7hdo7"]
 [ext_resource type="Texture2D" uid="uid://blmd2d2wox1b2" path="res://assets/speaker_mute.png" id="1_qpnrs"]
 [ext_resource type="Texture2D" uid="uid://dvk5ocxhn15d7" path="res://assets/speaker.png" id="2_tl44y"]
+[ext_resource type="AudioStream" uid="uid://nlox7tkrkyut" path="res://assets/music/Main_Menu.mp3" id="4_sfkhn"]
 
 [node name="settings_menu" type="Control"]
 layout_mode = 3
@@ -27,8 +28,14 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+[node name="MuteButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("2_tl44y")
 texture_pressed = ExtResource("1_qpnrs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sfkhn")
+volume_db = -20.0
+
+[connection signal="pressed" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_pressed"]
